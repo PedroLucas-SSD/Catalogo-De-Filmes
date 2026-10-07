@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html lang="pt-br" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Filmes</title>
+    <link rel="stylesheet" href="../bootstrap-5.3.0-dist/css/bootstrap.min.css">
+    <style>
+        body { background-color: #f5f6f8; }
+        .movie-card { height: 100%; }
+        .movie-card .card-title { min-height: 48px; }
+        .summary-number { font-size: 1.8rem; font-weight: 700; }
+        .genre-counts .badge { font-size: .9rem; margin: 2px; }
+    </style>
+</head>
+<body>
+    <div class="container py-4">
+        <div class="text-center mb-4">
+            <h1 class="mb-1">Catálogo de Filmes</h1>
+        </div>
+
+        <ul class="nav nav-tabs mb-4" id="abasCatalogo" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="listagem-tab" data-bs-toggle="tab" data-bs-target="#listagem" type="button" role="tab">
+                    Listagem
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="cadastro-tab" data-bs-toggle="tab" data-bs-target="#cadastro" type="button" role="tab">
+                    Cadastrar filme
+                </button>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="listagem" role="tabpanel">
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <div class="text-secondary">Filmes cadastrados</div>
+                                <div class="summary-number" id="quantidade-filmes">0</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <div class="text-secondary">Média das avaliações</div>
+                                <div class="summary-number" id="media-avaliacoes">0.0</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <div class="text-secondary mb-2">Filmes por gênero</div>
+                                <div id="contagem-generos" class="genre-counts"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row g-3 align-items-end">
+                            <div class="col-md-4">
+                                <label for="busca-titulo" class="form-label">Buscar pelo título</label>
+                                <input type="text" class="form-control" id="busca-titulo" placeholder="Ex.: Shrek">
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary w-100" id="botao-buscar">Buscar</button>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="filtro-genero" class="form-label">Filtrar por gênero</label>
+                                <select class="form-select" id="filtro-genero">
+                                    <option value="Todos">Todos</option>
+                                    <option value="Animação">Animação</option>
+                                    <option value="Drama">Drama</option>
+                                    <option value="Ficção Científica">Ficção Científica</option>
+                                    <option value="Terror">Terror</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex gap-2">
+                                <button class="btn btn-outline-primary flex-fill" id="botao-filtrar">Filtrar</button>
+                                <button class="btn btn-outline-dark flex-fill" id="botao-todos">Todos</button>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <button class="btn btn-warning" id="botao-melhor">⭐ Mostrar melhor avaliado</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="mensagem-listagem" class="alert alert-info d-none"></div>
+                <div class="row g-3" id="lista-filmes"></div>
+            </div>
+
+            <div class="tab-pane fade" id="cadastro" role="tabpanel">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="h4 mb-3">Cadastrar novo filme</h2>
+                        <form id="form-filme" class="row g-3">
+                            <div class="col-md-6">
+                                <label for="titulo" class="form-label">Título</label>
+                                <input type="text" class="form-control" id="titulo" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="genero" class="form-label">Gênero</label>
+                                <select class="form-select" id="genero" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="Animação">Animação</option>
+                                    <option value="Drama">Drama</option>
+                                    <option value="Ficção Científica">Ficção Científica</option>
+                                    <option value="Terror">Terror</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="ano" class="form-label">Ano</label>
+                                <input type="number" class="form-control" id="ano" min="1900" max="2100" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="nota" class="form-label">Avaliação</label>
+                                <input type="number" class="form-control" id="nota" min="0" max="10" step="0.1" required>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-success">Cadastrar filme</button>
+                            </div>
+                        </form>
+                        <div id="mensagem-cadastro" class="alert alert-success mt-3 d-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../bootstrap-5.3.0-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
