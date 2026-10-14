@@ -31,6 +31,51 @@ function exibirFilmes(listaFilmes) {
         mensagem.classList.remove('d-none');
         return;
     }
+
+    //listagem dos filmes   
+    for(let i =0; i < listaFilmes.length;i++){
+        const filme = listaFilmes[i];
+
+        //console.log(filme);
+        //console.log(filme.titulo);
+
+        let coluna = document.createElement('div');
+        coluna.className = 'col-md-6 col-lg-4';
+
+        let card = document.createElement('div');
+        card.className =  'card movie-card';
+
+        let cardBody = document.createElement('div');
+        cardBody.className =  'card-body';
+
+        let titulo = document.createElement('h3');
+        titulo.className = 'card-title h5';
+        titulo.textContent = filme.titulo;
+
+        let genero = document.createElement('span');
+        genero.className = 'badge text-bg-secondary mb-3';
+        genero.textContent = filme.genero;
+
+        let ano = document.createElement('p');
+        ano.className = 'card-text mb-1';
+        ano.textContent = `Ano: ${filme.ano}`;
+
+        let avaliacao = document.createElement('p');
+        avaliacao.className = 'card-text mb-1';
+        avaliacao.textContent = `Avaliação ${filme.nota.toFixed(1)}`
+
+
+        cardBody.appendChild(titulo)
+        cardBody.appendChild(genero)
+        cardBody.appendChild(ano)
+        cardBody.appendChild(avaliacao)
+
+        card.appendChild(cardBody);
+
+        coluna.appendChild(card);
+
+        areaFilmes.appendChild(coluna);
+    }
 }
 
 // Funçao de atalho para listar todos os filmes
