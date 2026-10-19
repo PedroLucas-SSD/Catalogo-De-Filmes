@@ -83,4 +83,62 @@ function listarTodos(){
     exibirFilmes(filmes);
 }
 
+function atualizarResumo(){
+    let divTotal = document.querySelector('#quantidade-filmes');          
+    let divMedia = document.querySelector('#media-avaliacoes'); 
+    let divGeneros = document.querySelector('#contagem-generos');    
+    
+    divTotal.textContent = filmes.length;
+    let somaNotas = 0;
+    let qtdPorGenero ={
+        animacao : 0,
+        drama : 0 ,
+        ficcaoCinetifica : 0,
+        terror : 0
+    }
+    for(let i = 0;i < filmes.length;i++){
+        somaNotas += filmes[i].nota;
+
+        if(filmes[i].genero === 'Animação'){
+            qtdPorGenero.animacao++;
+        } 
+         if(filmes[i].genero === 'Drama'){
+            qtdPorGenero.drama++;
+        } 
+        if(filmes[i].genero === 'Ficção Científica'){
+            qtdPorGenero.ficcaoCinetifica++;
+        } 
+        
+        if(filmes[i].genero ==='Terror'){
+            qtdPorGenero.terror++;
+        }
+    }
+    console.log(qtdPorGenero.terror,qtdPorGenero.ficcaoCinetifica,qtdPorGenero.drama,qtdPorGenero.animacao);
+    console.log(somaNotas);
+    let media = filmes.length > 0 ? somaNotas  / filmes.length : 0;
+
+    divMedia.textContent = media.toFixed(1)
+
+    let badgeAnimacao = document.createElement('span');
+    badgeAnimacao.className = 'badge text-bg-secondary';
+    badgeAnimacao.textContent = `Animação ${qtdPorGenero.animacao}`;
+
+    let badgedrama = document.createElement('span');
+    badgedrama.className = 'badge text-bg-success';
+    badgedrama.textContent = `drama ${qtdPorGenero.drama}`;
+
+    let badge = document.createElement('span');
+    badgeAnimacao.className = 'badge text-bg-secondary';
+    badgeAnimacao.textContent = `Animação ${qtdPorGenero.animacao}`;
+
+    let badge = document.createElement('span');
+    badgeAnimacao.className = 'badge text-bg-secondary';
+    badgeAnimacao.textContent = `Animação ${qtdPorGenero.animacao}`;
+
+    divGeneros.appendChild(badgeAnimacao)
+    divGeneros.appendChild(badgedrama)
+
 listarTodos();
+
+//Atualiza os dados de resumo no carregamento da pagina
+atualizarResumo();
