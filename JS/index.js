@@ -120,23 +120,26 @@ function atualizarResumo(){
     divMedia.textContent = media.toFixed(1)
 
     let badgeAnimacao = document.createElement('span');
-    badgeAnimacao.className = 'badge text-bg-secondary';
+    badgeAnimacao.className = 'badge text-bg-primary';
     badgeAnimacao.textContent = `Animação ${qtdPorGenero.animacao}`;
 
     let badgedrama = document.createElement('span');
     badgedrama.className = 'badge text-bg-success';
-    badgedrama.textContent = `drama ${qtdPorGenero.drama}`;
+    badgedrama.textContent = `Drama ${qtdPorGenero.drama}`;
 
-    let badge = document.createElement('span');
-    badgeAnimacao.className = 'badge text-bg-secondary';
-    badgeAnimacao.textContent = `Animação ${qtdPorGenero.animacao}`;
+    let badgeFiccao = document.createElement('span');
+    badgeFiccao.className = 'badge text-bg-secondary';
+    badgeFiccao.textContent = `Ficçao Cientifica ${qtdPorGenero.ficcaoCinetifica}`;
 
-    let badge = document.createElement('span');
-    badgeAnimacao.className = 'badge text-bg-secondary';
-    badgeAnimacao.textContent = `Animação ${qtdPorGenero.animacao}`;
+    let badgeTerror = document.createElement('span');
+    badgeTerror.className = 'badge text-bg-warning';
+    badgeTerror.textContent = `Terror ${qtdPorGenero.terror}`;
 
     divGeneros.appendChild(badgeAnimacao)
     divGeneros.appendChild(badgedrama)
+    divGeneros.appendChild(badgeFiccao)
+    divGeneros.appendChild(badgeTerror)
+}    
 
 listarTodos();
 
